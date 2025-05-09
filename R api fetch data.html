@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Data From Api</title>
+    <style>
+
+body{
+    font-family: Arial, sans-serif;
+    justify-items: center;
+    align-content: center;
+    
+}
+
+         .cards {
+            font-size: 1.2em;
+            width: 500px;
+            border: 2px solid black;
+            border-radius: 20px 80px;
+            margin: 50px;
+            padding: 20px;
+            text-align: center;
+            background: url("https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"); 
+            background-size: cover;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+
+    </div>
+
+    <script>
+         // Fetching data from an API
+       fetch("https://jsonplaceholder.typicode.com/comments")
+      .then((response) => response.json())
+      .then((data) => cards(data))
+
+        // .then((response) => response.json())
+        // .then((json) => console.log(json));
+      function cards(data){
+
+let container = document.getElementById("container");
+data.slice(0, 20).forEach((item) => {
+  let cards = document.createElement("div");
+  cards.innerHTML = `
+  <h3>Getting Data from Api & Making Cards</h3>
+Emp iD :  ${item.id} <br> <br>    
+Emp Name : ${item.name} <br><br> 
+Email : ${item.email} <br><br> 
+Body : ${item.body} <br> <br> `;
+
+  cards.setAttribute("class", "cards");
+  container.append(cards);
+});
+
+}
+    </script>
+</body>
+</html>
